@@ -40,7 +40,10 @@ services:
     image: eclipse-mosquitto
     ports:
       - 1883:1883
-
+  deploy:
+    placement: 
+      constraints: 
+        - node.role == manager
 volumes:
   postgresqldata:
   redisdata:
