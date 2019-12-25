@@ -3,6 +3,8 @@ version: "3"
 services:
   chirpstack-network-server:
     image: chirpstack/chirpstack-network-server:3
+    environment:
+      - MQTT_ADDRESS=172.21.10.101
     volumes:
       - ./configuration/chirpstack-network-server:/etc/chirpstack-network-server
     deploy:
@@ -23,6 +25,8 @@ services:
           - node.role == manager
   chirpstack-gateway-bridge:
     image: chirpstack/chirpstack-gateway-bridge:3
+    environment:
+      - MQTT_ADDRESS=172.21.10.101
     ports:
       - 1700:1700/udp
     volumes:
