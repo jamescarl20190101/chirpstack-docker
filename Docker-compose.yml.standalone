@@ -1,0 +1,78 @@
+version: "3"
+
+services:
+  chirpstack-network-server:
+    image: jamescarl20190101/pi-chirpstack-network-server:1.0
+    environment:
+      - MQTT_ADDRESS=172.21.10.101
+    volumes:
+      - ./configuration/chirpstack-network-server:/etc/chirpstack-network-server
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
+  chirpstack-application-server:
+    image: jamescarl20190101/pi-chirpstack-application-server:1.0
+    ports:
+      - 8080:8080
+    volumes:
+      - ./configuration/chirpstack-application-server:/etc/chirpstack-application-server
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
+  chirpstack-gateway-bridge:
+    image: jamescarl20190101/pi-chirpstack-gateway-bridge:1.0
+    environment:
+      - MQTT_ADDRESS=172.21.10.101
+    ports:
+      - 1700:1700/udp
+    volumes:
+      - ./configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
+  chirpstack-geolocation-server:
+    image: jamescarl20190101/pi-chirpstack-geolocation-server:1.0
+    volumes:
+      - ./configuration/chirpstack-geolocation-server:/etc/chirpstack-geolocation-server
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
+  postgresql:
+    image: postgres:9.6-alpine
+    volumes:
+      - ./configuration/postgresql/initdb:/docker-entrypoint-initdb.d
+      - postgresqldata:/var/lib/postgresql/data
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
+  redis:
+    image: redis:5-alpine
+    volumes:
+      - redisdata:/data
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - 1883:1883
+    deploy:
+      mode: global
+      placement: 
+       constraints: 
+          - node.role == manager
+volumes:
+  postgresqldata:
+  redisdata:
