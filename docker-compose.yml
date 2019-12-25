@@ -5,46 +5,70 @@ services:
     image: chirpstack/chirpstack-network-server:3
     volumes:
       - ./configuration/chirpstack-network-server:/etc/chirpstack-network-server
-
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
   chirpstack-application-server:
     image: chirpstack/chirpstack-application-server:3
     ports:
       - 8080:8080
     volumes:
       - ./configuration/chirpstack-application-server:/etc/chirpstack-application-server
-
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
   chirpstack-gateway-bridge:
     image: chirpstack/chirpstack-gateway-bridge:3
     ports:
       - 1700:1700/udp
     volumes:
       - ./configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
-
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
   chirpstack-geolocation-server:
     image: chirpstack/chirpstack-geolocation-server:3
     volumes:
       - ./configuration/chirpstack-geolocation-server:/etc/chirpstack-geolocation-server
-
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
   postgresql:
     image: postgres:9.6-alpine
     volumes:
       - ./configuration/postgresql/initdb:/docker-entrypoint-initdb.d
       - postgresqldata:/var/lib/postgresql/data
-
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
   redis:
     image: redis:5-alpine
     volumes:
       - redisdata:/data
-
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
   mosquitto:
     image: eclipse-mosquitto
     ports:
       - 1883:1883
-  deploy:
-    mode: global
-    placement: 
-      constraints: 
-        - node.role == manager
+    deploy:
+      mode: global
+      placement: 
+        constraints: 
+          - node.role == manager
 volumes:
   postgresqldata:
   redisdata:
