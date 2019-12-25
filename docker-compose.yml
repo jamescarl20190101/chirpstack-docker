@@ -12,6 +12,8 @@ services:
       placement: 
         constraints: 
           - node.role == manager
+    networks:
+      - mosquitto_mqtt-net1
   chirpstack-application-server:
     image: jamescarl20190101/pi-chirpstack-application-server:1.0
     ports:
@@ -23,6 +25,8 @@ services:
       placement: 
         constraints: 
           - node.role == manager
+    networks:
+      - mosquitto_mqtt-net1
   chirpstack-gateway-bridge:
     image: jamescarl20190101/pi-chirpstack-gateway-bridge:1.0
     environment:
@@ -36,6 +40,8 @@ services:
       placement: 
         constraints: 
           - node.role == manager
+    networks:
+      - mosquitto_mqtt-net1
   chirpstack-geolocation-server:
     image: jamescarl20190101/pi-chirpstack-geolocation-server:1.0
     volumes:
@@ -45,6 +51,8 @@ services:
       placement: 
         constraints: 
           - node.role == manager
+    networks:
+      - mosquitto_mqtt-net1
   postgresql:
     image: postgres:9.6-alpine
     volumes:
@@ -55,6 +63,8 @@ services:
       placement: 
         constraints: 
           - node.role == manager
+    networks:
+      - mosquitto_mqtt-net1
   redis:
     image: redis:5-alpine
     volumes:
@@ -64,6 +74,8 @@ services:
       placement: 
         constraints: 
           - node.role == manager
+    networks:
+      - mosquitto_mqtt-net1
 #  mosquitto:
 #    image: eclipse-mosquitto
 #    ports:
@@ -76,3 +88,7 @@ services:
 volumes:
   postgresqldata:
   redisdata:
+
+networks:
+  mosquitto_mqtt-net1:
+    external: true
