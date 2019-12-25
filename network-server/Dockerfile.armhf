@@ -1,0 +1,8 @@
+FROM arm32v7/alpine:latest AS production
+ENV PROJECT_PATH=/chirpstack-network-server
+ENV PATH=$PATH:$PROJECT_PATH
+RUN mkdir -p $PROJECT_PATH
+WORKDIR $PROJECT_PATH
+RUN wget https://artifacts.chirpstack.io/downloads/chirpstack-network-server/chirpstack-network-server_3.6.0_linux_armv7.tar.gz
+RUN tar xvzf chirpstack-network-server_3.6.0_linux_armv7.tar.gz
+ENTRYPOINT ["chirpstack-network-server"]

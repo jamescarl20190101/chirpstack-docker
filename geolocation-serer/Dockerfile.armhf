@@ -1,0 +1,8 @@
+FROM arm32v7/alpine:latest AS production
+ENV PROJECT_PATH=/chirpstack-geolocation-server
+ENV PATH=$PATH:$PROJECT_PATH
+RUN mkdir -p $PROJECT_PATH
+WORKDIR $PROJECT_PATH
+RUN wget https://artifacts.chirpstack.io/downloads/chirpstack-geolocation-server/chirpstack-geolocation-server_3.3.1_linux_armv7.tar.gz
+RUN tar xvzf chirpstack-geolocation-server_3.3.1_linux_armv7.tar.gz
+ENTRYPOINT ["chirpstack-geolocation-server"]

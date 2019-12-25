@@ -16,7 +16,26 @@ but keep in mind that for production usage it might need modifications.
     * https://www.chirpstack.io/application-server/install/config/
     * https://www.chirpstack.io/geolocation-server/install/config/
 * `configuration/postgresql/initdb/`: directory containing PostgreSQL initialization scripts
+time docker build -t jamescarl20190101/pi-chirpstack-network-server:1.0 -f Dockerfile.armhf .
+docker push jamescarl20190101/pi-chirpstack-network-server:1.0
+# validation
+docker run -it jamescarl20190101/pi-chirpstack-network-server:1.0
 
+time docker build -t jamescarl20190101/pi-chirpstack-application-server:1.0 -f Dockerfile.armhf .
+docker push jamescarl20190101/pi-chirpstack-application-server:1.0
+# validation
+docker run -it jamescarl20190101/pi-chirpstack-application-server:1.0
+
+time docker build -t jamescarl20190101/pi-chirpstack-geolocation-server:1.0 -f Dockerfile.armhf .
+docker push jamescarl20190101/pi-chirpstack-geolocation-server:1.0
+# validation
+docker run -it jamescarl20190101/pi-chirpstack-geolocation-server:1.0
+
+
+time docker build -t jamescarl20190101/pi-chirpstack-gateway-bridge:1.0 -f Dockerfile.armhf .
+docker push jamescarl20190101/pi-chirpstack-gateway-bridge:1.0
+# validation
+docker run -it jamescarl20190101/pi-chirpstack-gateway-bridge:1.0
 ## Configuration
 
 The ChirpStack stack components components are pre-configured to work with the provided
