@@ -41,6 +41,7 @@ services:
     ports:
       - 1883:1883
   deploy:
+    mode: global
     placement: 
       constraints: 
         - node.role == manager
