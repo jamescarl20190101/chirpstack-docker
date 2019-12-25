@@ -60,15 +60,15 @@ services:
       placement: 
         constraints: 
           - node.role == manager
-  mosquitto:
-    image: eclipse-mosquitto
-    ports:
-      - 1883:1883
-    deploy:
-      mode: global
-      placement: 
-        constraints: 
-          - node.role == manager
+#  mosquitto:
+#    image: eclipse-mosquitto
+#    ports:
+#      - 1883:1883
+#    deploy:
+#      mode: global
+#      placement: 
+#       constraints: 
+#          - node.role == manager
 volumes:
   postgresqldata:
   redisdata:
