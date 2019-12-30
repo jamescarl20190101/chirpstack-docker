@@ -22,6 +22,7 @@ but keep in mind that for production usage it might need modifications.
 ### Network server
 #### Build and push
 time docker build -t jamescarl20190101/pi-chirpstack-network-server:1.0 -f Dockerfile.armhf .
+
 docker push jamescarl20190101/pi-chirpstack-network-server:1.0
 #### validation
 docker run -it jamescarl20190101/pi-chirpstack-network-server:1.0
@@ -29,6 +30,7 @@ docker run -it jamescarl20190101/pi-chirpstack-network-server:1.0
 ### Application server
 #### Build and push
 time docker build -t jamescarl20190101/pi-chirpstack-application-server:1.0 -f Dockerfile.armhf .
+
 docker push jamescarl20190101/pi-chirpstack-application-server:1.0
 #### validation
 docker run -it jamescarl20190101/pi-chirpstack-application-server:1.0
@@ -36,6 +38,7 @@ docker run -it jamescarl20190101/pi-chirpstack-application-server:1.0
 ### Geolocatioin server
 #### Build and push
 time docker build -t jamescarl20190101/pi-chirpstack-geolocation-server:1.0 -f Dockerfile.armhf .
+
 docker push jamescarl20190101/pi-chirpstack-geolocation-server:1.0
 #### validation
 docker run -it jamescarl20190101/pi-chirpstack-geolocation-server:1.0
@@ -43,6 +46,7 @@ docker run -it jamescarl20190101/pi-chirpstack-geolocation-server:1.0
 ### Gateway bridge
 #### Build and push
 time docker build -t jamescarl20190101/pi-chirpstack-gateway-bridge:1.0 -f Dockerfile.armhf .
+
 docker push jamescarl20190101/pi-chirpstack-gateway-bridge:1.0
 #### validation
 docker run -it jamescarl20190101/pi-chirpstack-gateway-bridge:1.0
